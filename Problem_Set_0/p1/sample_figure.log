@@ -1,0 +1,36 @@
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2020.12.20)  3 SEP 2021 21:29
+entering extended mode
+**./sample_figure.eps
+
+("C:\Users\Qihao Zhuo\OneDrive\Homework\Numerical Methods\Problem Set 0\sample_
+figure.eps"
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for loaded.
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.468 s
+       ave /d_sv_obj exch def
+? 
+! Emergency stop.
+ ...                                              
+                                                  
+l.468 s
+       ave /d_sv_obj exch def
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+ 
+Here is how much of TeX's memory you used:
+ 9 strings out of 495354
+ 464 string characters out of 3183858
+ 44842 words of memory out of 3000000
+ 3276 multiletter control sequences out of 15000+200000
+ 3640 words of font info for 14 fonts, out of 3000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 5i,0n,4p,103b,14s stack positions out of 5000i,500n,10000p,200000b,50000s
+!  ==> Fatal error occurred, no output PDF file produced!

@@ -1,0 +1,12 @@
+\BOOKMARK [1][-]{section.1}{Code\040Documentation}{}% 1
+\BOOKMARK [1][-]{section.2}{Computing\040in\040Parallel}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Assignment}{section.2}% 3
+\BOOKMARK [3][-]{subsubsection.2.1.1}{a}{subsection.2.1}% 4
+\BOOKMARK [3][-]{subsubsection.2.1.2}{b}{subsection.2.1}% 5
+\BOOKMARK [3][-]{subsubsection.2.1.3}{c}{subsection.2.1}% 6
+\BOOKMARK [3][-]{subsubsection.2.1.4}{d}{subsection.2.1}% 7
+\BOOKMARK [3][-]{subsubsection.2.1.5}{e}{subsection.2.1}% 8
+\BOOKMARK [2][-]{subsection.2.2}{Tutorial:\040Programming\040in\040C}{section.2}% 9
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Setting\040up\040your\040programming\040environment}{subsection.2.2}% 10
+\BOOKMARK [3][-]{subsubsection.2.2.2}{Writing\040a\040"hello\040world"\040program\040in\040C}{subsection.2.2}% 11
+\BOOKMARK [2][-]{subsection.2.3}{Parrallelizing\040your\040code\040using\040OpenMP}{section.2}% 12
