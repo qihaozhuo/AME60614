@@ -1,0 +1,307 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{fullpage}
+\usepackage{fixltx2e}
+\usepackage{multirow}
+\usepackage{amssymb,amsmath}
+\usepackage{mathtools}
+\usepackage{bm}
+\usepackage[hyperfootnotes=false]{hyperref}
+\usepackage{url}
+\usepackage{subfig}
+\usepackage{relsize}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{framed}
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}
+\headsep = 20pt
+
+% Lineskip mods
+\linespread{1.0}
+\setlength{\parskip}{0.5\baselineskip}
+\setlength{\parindent}{0pt}
+\newlength\docparskip
+\parskip=6pt
+\setlength{\docparskip}{\parskip}
+\renewcommand{\arraystretch}{1.085}
+\usepackage{xcolor}
+\lstset{basicstyle=\ttfamily,
+  showstringspaces=false,
+  commentstyle=\color{red},
+  keywordstyle=\color{blue}
+}
+\begin{document}
+
+\fancyhf{}
+\fancyhead[L]{AME 60614: Numerical Methods}
+\fancyhead[R]{Qihao Zhuo: Problem Set 0}
+\fancyfoot[C]{\thepage}
+
+\thispagestyle{plain}
+\begin{center}
+  \large
+  \textbf{AME 60614: Numerical Methods} \\
+  \textbf{Fall 2021} \\
+  \vspace{0.5em}
+  \textbf{Problem Set 1} \\
+  \vspace{1em}
+  Qihao Zhuo
+\end{center}
+
+\vspace{1.5em}
+
+All codes are submitted to Sakai, and only their file names will be mentioned in this report when they occurs. 
+\section{Finite-Difference Schemes}\label{sec1}
+\subsection{$f_{i-2},f_{i-1},f_{i},f_{i+1},f_{i+2}$}
+With the MATLAB scripts $p1\_1.m$, coefficients solved by corresponding matrix equation are shown in the Tab.~\ref{tab1_1}.  
+\begin{table}[htbp]
+  \centering  
+  \caption{Output of First Group}\label{tab1_1}
+  \begin{tabular}{cccccccc}
+    \hline
+    & $a_1$ & $a_2$ & $a_3$ & $a_4$& $a_5$ & $Truncation Error$& $Accuracy$\\
+    \hline
+    $f_{i}^{''}$ & $\frac{-1}{12h^2}$ & $\frac{4}{3h^2}$ & $\frac{-5}{2h^2}$ & $\frac{4}{3h^2}$ & $\frac{-1}{12h^2}$ & $\frac{h^4}{90}f_{i}^{6}$& $O\left(h^4\right)$\\
+    $f_{i}^{iv}$ & $\frac{1}{h^4}$ & $\frac{-4}{h^4}$ & $\frac{6}{h^4}$ & $\frac{-4}{h^4}$ & $\frac{1}{h^4}$ & $\frac{-h^2}{6}f_{i}^{6}$& $O\left(h^2\right)$\\
+    $f_{i}^{'''}-3f_{i}^{'}$ & $\frac{-\left(h^2+2\right)}{4h^3}$ & $\frac{2h^2+1}{h^3}$ & 0 & $\frac{-\left(h^2+1\right)}{h^3}$ & $\frac{h^2+2}{4h^3}$ & $\left(\frac{2h^2(h^2 + 2)}{15} - \frac{h^2(2h^2 + 1)}{60}\right)f_{i}^{5}$&$O\left(h^2\right)$\\
+    \hline
+  \end{tabular}
+\end{table}
+\subsection{$f_{i},f_{i+1},f_{i+2},f_{i+3},f_{i+4}$}
+With the MATLAB scripts $p1\_2.m$, coefficients are shown in the Tab.~\ref{tab1_2}.  
+\begin{table}[htbp]
+  \centering  
+  \caption{Output of Second Group}\label{tab1_2}
+  \begin{tabular}{cccccccc}
+    \hline
+    & $a_1$ & $a_2$ & $a_3$ & $a_4$& $a_5$ & Truncation Error& Accuracy\\
+    \hline
+    $f_{i}^{''}$ & $\frac{35}{12h^2}$ & $\frac{-26}{3h^2}$ & $\frac{19}{2h^2}$ & $\frac{-14}{3h^2}$ & $\frac{11}{12h^2}$ & $-\frac{5h^3}{6}f_{i}^{5}$& $O\left(h^3\right)$\\
+    $f_{i}^{iv}$ & $\frac{1}{h^4}$ & $\frac{-4}{h^4}$ & $\frac{6}{h^4}$ & $\frac{-4}{h^4}$ & $\frac{1}{h^4}$ & $-2hf_{i}^{5}$& $O\left(h\right)$\\
+    $f_{i}^{'''}-3f_{i}^{'}$ & $\frac{5\left(5h^2-2\right)}{4h^3}$ & $\frac{-3\left(4h^2-3\right)}{h^3}$ & $\frac{3\left(3h^2-4\right)}{h^3}$ & $\frac{-\left(4h^2-7\right)}{h^3}$ & $\frac{3\left(h^2-2\right)}{4h^3}$ & Eq.~\ref{p1eq1}&$O\left(h^2\right)$\\
+    \hline
+  \end{tabular}
+\end{table}
+\begin{equation}\label{p1eq1}
+  TE = -\left(\frac{32h^2(h^2 - 2)}{5} + \frac{4h^2(3h^2 - 4)}{5} - \frac{h^2(4h^2 - 3)}{40} - \frac{81h^2(4h^2 - 7)}{40}\right)f_{i}^{5}
+\end{equation}
+\subsection{$f_{i-4},f_{i-3},f_{i-2},f_{i-1},f_{i}$}
+With the MATLAB scripts $p1\_3.m$, coefficients are shown in the Tab.~\ref{tab1_3}
+\begin{table}[htbp]
+  \centering  
+  \caption{Output of Third Group}\label{tab1_3}
+  \begin{tabular}{cccccccc}
+    \hline
+    & $a_1$ & $a_2$ & $a_3$ & $a_4$& $a_5$ & Truncation Error& Accuracy\\
+    \hline
+    $f_{i}^{''}$ & $\frac{11}{12h^2}$ & $\frac{-14}{3h^2}$ & $\frac{19}{2h^2}$ & $\frac{-26}{3h^2}$ & $\frac{35}{12h^2}$ & $\frac{5h^3}{6}f_{i}^{5}$& $O\left(h^3\right)$\\
+    $f_{i}^{iv}$ & $\frac{1}{h^4}$ & $\frac{-4}{h^4}$ & $\frac{6}{h^4}$ & $\frac{-4}{h^4}$ & $\frac{1}{h^4}$ & $2hf_{i}^{5}$& $O\left(h\right)$\\
+    $f_{i}^{'''}-3f_{i}^{'}$ & $\frac{-3\left(h^2-2\right)}{4h^3}$ & $\frac{4h^2-7}{h^3}$ & $\frac{-3\left(3h^2-4\right)}{h^3}$ & $\frac{3\left(4h^2-3\right)}{h^3}$ & $\frac{-5\left(5h^2-2\right)}{4h^3}$ & Eq.~\ref{p1eq2}&$O\left(h^2\right)$\\
+    \hline
+  \end{tabular}
+\end{table}
+\begin{equation}\label{p1eq2}
+  TE = -\left(\frac{32h^2(h^2 - 2)}{5} + \frac{4h^2(3h^2 - 4)}{5} - \frac{h^2(4h^2 - 3)}{40} - \frac{81h^2(4h^2 - 7)}{40}\right)f_{i}^{5}
+\end{equation}
+\subsection{$f_{i-1},f_{i},f_{i+1},f_{i-1}^{'},f_{i}^{'},f_{i+1}^{'}$}
+With the MATLAB scripts $p1\_4.m$, coefficients are shown in the Tab.~\ref{tab1_4}. 
+\begin{table}[htbp]
+  \centering  
+  \caption{Output of Fourth Group}\label{tab1_4}
+  \begin{tabular}{ccccccccc}
+    \hline
+    & $a_1$ & $a_2$ & $a_3$ & $a_4$& $a_5$ & $a_6$& Truncation Error& Accuracy\\
+    \hline
+    $f_{i}^{''}$ & $\frac{2}{h^2}$ & $\frac{-4}{h^2}$ & $\frac{2}{2h^2}$ & $\frac{1}{2h}$ &0& $\frac{-1}{2h}$ & $\frac{h^4}{360}f_{i}^{6}$& $O\left(h^4\right)$\\
+    $f_{i}^{iv}$ & $\frac{-12}{h^4}$ & $\frac{24}{h^4}$ & $\frac{-12}{h^4}$ & $\frac{-6}{h^3}$ &0& $\frac{6}{h^3}$ & $-\frac{h^2}{15}f_{i}^{6}$& $O\left(h^2\right)$\\
+    $f_{i}^{'''}-3f_{i}^{'}$ & $\frac{15}{2h^3}$ & $0$ & $\frac{15}{2h^3}$ & $\frac{-3}{2h^2}$ & $\frac{-3\left(h^2+4\right)}{h^2}$ & $\frac{-3}{2h^2}$&$\frac{h^4}{840}f_{i}^{7}$&$O\left(h^4\right)$\\
+    \hline
+  \end{tabular}
+\end{table}
+
+\section{Richardson Extrapolation}
+For fourth-order central-difference scheme, fivr points are required. Modifying codes in Sec. \ref{sec1} to solve 
+the scheme with points of $x-2h, x-h, x, x+h, x+2h$. 
+\begin{equation}
+  \frac{1}{12h}f_{i-2}-\frac{2}{3}f_{i-1}+\frac{2}{3}f_{i+1}-\frac{1}{12}f_{i+2}
+  = f_{i}^{'} - \frac{h^4}{30} - \frac{h^6}{252} - \frac{h^8}{4320} - \frac{17h^{10}}{1995840} \notag
+\end{equation}
+
+Under central-difference scheme, the odd-order terms are zero. So to get sixth-, eighth- and tenth- order
+schemes, solving corresponding linear equations need two, three and four expressions. Those expressions are 
+from $p2\_0\_*.mlx$. 
+
+\begin{align}
+  f^{'}_{1} = \frac{1}{6h}f_{i-2}-\frac{4}{3h}f_{i-1}+\frac{4}{3h}f_{i+1}-\frac{1}{6h}f_{i+2}
+  = f_{i}^{'} - \frac{h^4}{480} - \frac{h^6}{16128} - \frac{h^8}{1105920} - \frac{17h^{10}}{2043740160} \notag\\
+  f^{'}_{2} = \frac{1}{12h}f_{i-2}-\frac{2}{3h}f_{i-1}+\frac{2}{3h}f_{i+1}-\frac{1}{12h}f_{i+2}
+  = f_{i}^{'} - \frac{h^4}{30} - \frac{h^6}{252} - \frac{h^8}{4320} - \frac{17h^{10}}{1995840} \notag\\
+  f^{'}_{3} = \frac{1}{24h}f_{i-2}-\frac{1}{3h}f_{i-1}+\frac{1}{3h}f_{i+1}-\frac{1}{24h}f_{i+2}
+  = f_{i}^{'} - \frac{8h^4}{15} - \frac{16h^6}{63} - \frac{8h^8}{135} - \frac{272h^{10}}{31185} \notag\\
+  f^{'}_{4} = \frac{1}{48h}f_{i-2}-\frac{1}{6h}f_{i-1}+\frac{1}{6h}f_{i+1}-\frac{1}{48h}f_{i+2}
+  = f_{i}^{'} - \frac{128h^4}{15} - \frac{1024h^6}{63} - \frac{2048h^8}{135} - \frac{278528h^{10}}{31185} \notag
+\end{align}
+
+Through $p2\_1.mlx$, Richardson Extrapolation Algorithms are derived. 
+\begin{align}
+   f^{'}\left(x\right) &= \frac{16}{15}f^{'}_{4} - \frac{1}{15}f^{'}_{3} + O\left(h^6\right)\notag\\
+   f^{'}\left(x\right) &= \frac{1024}{945}f^{'}_{4} - \frac{16}{189}f^{'}_{3} + \frac{1}{945}f^{'}_{2}+O\left(h^6\right)\notag\\
+   f^{'}\left(x\right) &= \frac{724762624}{665713083}f^{'}_{4} - \frac{385839104}{4279584105}f^{'}_{3} + \frac{1251248}{855916821}f^{'}_{2} - \frac{149297}{29957088735}f^{'}_{1}+O\left(h^6\right)\notag
+\end{align}
+\subsection{b}
+With $p2\_2.f90$, output of different schemes is shown in Tab.~\ref{tab2_1}. 
+
+\begin{table}[htbp]
+  \centering  
+  \caption{Output of Richardson Extrapolation}\label{tab2_1}
+  \begin{tabular}{cccc}
+    \hline
+    & $I_{numerical}$ & $I_{exact}$ & $Absolute Error$ \\
+    \hline
+    4-th & -0.73598998070968713 & -0.73575888234288467 & 2.3109836680246243E-004\\
+    6-th & -0.73600395924846174 & -0.73575888234288467 & 2.4507690557706852E-004\\
+    8-th & -0.73600748822810591 & -0.73575888234288467 & 2.4860588522124250E-004\\
+    10-th & -0.73600855032649926& -0.73575888234288467 & 2.4966798361458764E-004\\
+    \hline
+  \end{tabular}
+\end{table}       
+        
+It seems the higher the scheme, the output is approaching another value rather than the exact value. 
+It might because of the range limits on complicated fractions. 
+
+\section{Integral Equations}
+\subsection{a}
+With the trapezoid method, the integral term could be approximated, 
+\begin{equation}
+  \int_0^x K\left(x,t\right)f\left(t\right)\mathrm{d}t \approx \frac{\Delta t}{2}
+  \left[K\left(x,t_0\right)f\left(t_0\right)+2K\left(x,t_1\right)f\left(t_1\right)+...+2K\left(x,t_{n-1}\right)f\left(t_{n-1}+K\left(x,t_n\right)f\left(t_n\right)\right)\right]\notag
+\end{equation}
+
+Taking $f\left(t_i\right)=f_i$, $g\left(x_i\right) = g_i$ and $K_{ij} = K\left(x_i,t_j\right)$. 
+\begin{align}
+    f_0 &= g_0\notag\\
+    f_1 + \frac{\Delta t}{2}\left(K_{10}f_0 + K_{11}f_1\right) &= g_1\notag\\
+    f_2 + \frac{\Delta t}{2}\left(K_{20}f_0 + 2K_{21}f_1 + K_{22}f_2\right) &= g_2\notag\\
+    &...\notag\\
+    f_n + \frac{\Delta t}{2}\left(K_{n0}f_0 + 2K_{n1}f_1 + ...+ 2K_{n,n-1}f_{n-1}+K_{n,n}f_n\right) &= g_n\notag
+\end{align}
+
+Those equations could be seen as a linear equations system. 
+\begin{align}
+  \bm{f} + \bm{Mf} &= \bm{g}\notag\\
+  \left(\bm{I}+\bm{M}\right)\bm{f} &= \bm{g}\notag\\
+  \bm{f} &= \left(\bm{I}+\bm{M}\right)^{-1} \bm{g}\notag
+\end{align}
+
+Through solving such matrix equation, a discret set of approximate values of $f\left(x\right)$ will be given. 
+The trapezoid method has a accuracy of $O\left(h^2\right)$. From the matrix equation, accuracy of $f\left(x\right)$ also has the accuracy of $O\left(h^2\right)$. 
+\begin{equation}
+  Error = \frac{h^2\left(b-a\right)}{12}f^{2}\left(x\right)\approx 0.0017\notag
+\end{equation}
+\subsection{b}
+Using $p3\_1.mlx$, with 10 intervals in $\left[0,1\right]$, the output is shown below. 
+\begin{align}
+  \bm{I}+\bm{M} =& 1~0~0~0~0~0~0~0~0~0~0\notag\\
+    &0.0005~1~0~0~0~0~0~0~0~0~0\notag\\
+    &0.002~0.001~1~0~0~0~0~0~0~0~0\notag\\
+    &0.0045~0.004~0.001~1~0~0~0~0~0~0~0\notag\\
+    &0.008~0.009~0.004~0.001~1~0~0~0~0~0~0\notag\\
+    &0.0125~0.016~0.009~0.004~0.001~1~0~0~0~0~0\notag\\
+    &0.018~0.025~0.016~0.009~0.004~0.001~1~0~0~0~0\notag\\
+    &0.0245~0.036~0.025~0.016~0.009~0.004~0.001~1~0~0~0\notag\\
+    &0.032~0.049~0.036~0.025~0.016~0.009~0.004~0.001~1~0~0\notag\\
+    &0.0405~0.064~0.049~0.036~0.025~0.016~0.009~0.004~0.001~1~0\notag\\
+    &0.05~0.081~0.064~0.049~0.036~0.025~0.016~0.009~0.004~0.001~1\notag
+\end{align}
+\begin{align}
+  \bm{g} &= \left(1.0000~0.8010~0.2969~-0.2824~-0.6894~-0.7788~-0.5644~-0.1893~0.1629~0.3599~0.3679\right)\notag\\
+  \bm{f} &= \left(1.0000~0.8005~0.2941~-0.2904~-0.7055~-0.8049~-0.6009~-0.2352~0.1096~0.3010~0.3050\right)\notag
+\end{align}
+
+From $\bm{{g}}$ and $\bm{f}$, the absolute error magnitude is of $0.001$. So the accuracy approximation in Problem 3.a is \underline{valified}. 
+\section{Gauss-Hermite Quadrature}
+\subsection{a}
+With a simple code $p4\_0.f90$, $x^4\left[\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}\right] \approx 7.6945986\times 10^{-19}$ when $x=10$. 
+Therefore the integral on $\left[-\infty,\infty\right]$ could be replaced by integral on $\left[-10,10\right]$. 
+
+With code of Simpson's rule, $p4\_1.f90$, the three numerical integrals are shown in Tab.~\ref{tab4_1}. 
+\begin{table}[htbp]
+  \centering  
+  \caption{Simpson method for different moments}\label{tab4_1}
+  \begin{tabular}{cccccc}
+    \hline
+    & $I_{Simpson}$ & $I_{exact}$ & $Absolute Error$ & $Relative Error$& $h$\\
+    \hline
+    1 & 0.99999999945724893 & 1 & 5.4275106631251901E-010 & 5.4275106631251901E-010 & 0.1\\
+    $x^2$ & 0.99999999945724838 & 1 & 5.4275162142403133E-010 & 5.4275162142403133E-010 & 0.1\\
+    $x^4$ & 2.9999999983717434 & 3 & 1.6282566406289334E-009 & 5.4275221354297776E-010 & 0.1\\
+    \hline
+  \end{tabular}
+\end{table}
+
+For $f\left(x\right)=x^4$, $f^{4} = 24$. 
+\begin{align}
+  \frac{24\times 20}{180n^4} &\leq 0.000001\notag\\
+  n &\geq \left(\frac{8}{3}\times 10^6\right)^{1/4} \approx 40.41
+\end{align}
+
+So to get an absolute error of $10^{-6}$, in my case \underline{41 points} is the least. 
+\subsection{b}
+The general form of Gauss-Hermite Quadrature is using $e^{-x^2}$, so a variable changing of $x=\sqrt{2}t$ 
+is used to modify the function form. 
+\begin{align}
+  \int_{-\infty}^{\infty} \left[\frac{1}{\sqrt{2\pi}}e^{\frac{-x^2}{2}}\right]\mathrm{d}x &= \frac{1}{\sqrt{\pi}}\int_{-\infty}^{\infty} e^{-t^2}\mathrm{d}t\notag\\
+  \int_{-\infty}^{\infty} x^2\left[\frac{1}{\sqrt{2\pi}}e^{\frac{-x^2}{2}}\right]\mathrm{d}x &= \frac{1}{\sqrt{\pi}}\int_{-\infty}^{\infty} 2t^2 e^{-t^2}\mathrm{d}t\notag\\
+  \int_{-\infty}^{\infty} x^4\left[\frac{1}{\sqrt{2\pi}}e^{\frac{-x^2}{2}}\right]\mathrm{d}x &= \frac{1}{\sqrt{\pi}}\int_{-\infty}^{\infty} 4t^4 e^{-t^2}\mathrm{d}t\notag\\
+  \int_{-\infty}^{\infty} \cos x \left[\frac{1}{\sqrt{2\pi}}e^{\frac{-x^2}{2}}\right]\mathrm{d}x &= \frac{1}{\sqrt{\pi}}\int_{-\infty}^{\infty} \cos \left(\sqrt{2}t\right) e^{-t^2}\mathrm{d}t\notag
+\end{align}
+
+For $f\left(x\right)=x^2$, $2N+1=2 \Rightarrow N+1=1.5$. So 2 points would be required to exactly compute it. 
+
+For $f\left(x\right)=x^4$, $2N+1=4 \Rightarrow N+1=2.5$. So 3 points would be required to exactly compute it. 
+
+The output of Gauss-Hermite Quadrature of second moments with 2 points and fourth moments with 4 points is shown in Tab.~\ref{tab4_2}. 
+The conclusion is \underline{verified}. 
+\begin{table}[htbp]
+  \centering  
+  \caption{Gauss-Hermite Quadrature for different moments}\label{tab4_2}
+  \begin{tabular}{ccccc}
+    \hline
+    & $I_{G-H}$ & $I_{exact}$ & $Absolute Error$ & $Quadrature Points$\\
+    \hline
+    $x^2$ & 1 & 1 & 0 & 2\\
+    $x^4$ & 3 & 3 & 0 & 3\\
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsection{c}
+For $f\left(x\right) = \cos x$, $f^{4}\left(x\right) = \cos x$. 
+\begin{align}
+  \frac{1\times 20}{180n^4} &\leq 10^{-6}\notag\\
+  n &\geq \left(\frac{10^6}{9}\right)^{1/4} \approx 18.26
+\end{align}
+So to get an absolute error of $10^{-6}$, in my case \underline{19 points} is the least.
+
+For $f\left(x\right) = \cos x$, $f\left(t\right) = \frac{\cos \left(\sqrt{2}t\right)}{\sqrt{\pi}}$. 
+And the error formula for Gauss-Hermite is $error = \frac{n!\sqrt{\pi}}{2^n\left(2n\right)!}f^{2n}\left(\epsilon\right)$. 
+to get an absolute error of $10^{-6}$, \underline{6 points} is the least. 
+
+Modifying $p4\_2.mlx$ and $p4\_1.f90$, output is shown in Tab.~\ref{tab4_3} and the two conclusions are \underline{valified}. 
+\begin{table}[htbp]
+  \centering  
+  \caption{Two Numerical Integrals of $\cos x$}\label{tab4_3}
+  \begin{tabular}{ccccc}
+    \hline
+    & $I_{numerical}$ & $I_{exact}$ & $Absolute Error$ & $Quadrature Points$\\
+    \hline
+    Simpson & 0.60652631055192174 & $e^{-1/2}$ & 4.3557993966159003E-006 & 19\\
+    Gauss-Hermite & 0.606556817612611 & $e^{-1/2}$ & 1.18710329088945E-006 & 6\\
+    \hline
+  \end{tabular}
+\end{table}
+\section{Code Appendix}
+
+\end{document}
