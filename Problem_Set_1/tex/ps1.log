@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2021.1.2)  29 SEP 2021 18:03
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2021.1.2)  30 SEP 2021 04:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -631,24 +631,24 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 [1
 
-] [2] [3] [4]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 305.
- [5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 305.
+] [2] [3] [4] [5]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 326.
+ [6]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 326.
  (./ps1.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 305.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 305.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 326.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 326.
 Package rerunfilecheck Info: File `ps1.out' has not changed.
-(rerunfilecheck)             Checksum: F619C3197D7ACB187480C4DD45025050;838.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 305.
+(rerunfilecheck)             Checksum: E7E3A67CD5443B08D5EEA78502CA2F35;882.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 326.
  ) 
 Here is how much of TeX's memory you used:
  13499 strings out of 479418
  198036 string characters out of 5884586
- 479538 words of memory out of 5000000
+ 479597 words of memory out of 5000000
  30820 multiletter control sequences out of 15000+600000
  544624 words of font info for 76 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  50i,12n,48p,280b,349s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on ps1.pdf (5 pages).
+Output written on ps1.pdf (6 pages).
