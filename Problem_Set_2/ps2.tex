@@ -1,0 +1,104 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{fullpage}
+\usepackage{fixltx2e}
+\usepackage{multirow}
+\usepackage{amssymb,amsmath}
+\usepackage{mathtools}
+\usepackage{bm}
+\usepackage[hyperfootnotes=false]{hyperref}
+\usepackage{url}
+\usepackage{subfig}
+\usepackage{relsize}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{framed}
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}
+\headsep = 20pt
+
+% Lineskip mods
+\linespread{1.0}
+\setlength{\parskip}{0.5\baselineskip}
+\setlength{\parindent}{0pt}
+\newlength\docparskip
+\parskip=6pt
+\setlength{\docparskip}{\parskip}
+\renewcommand{\arraystretch}{1.085}
+\usepackage{xcolor}
+\lstset{basicstyle=\ttfamily,
+  showstringspaces=false,
+  commentstyle=\color{red},
+  keywordstyle=\color{blue}
+}
+\begin{document}
+
+\fancyhf{}
+\fancyhead[L]{AME 60614: Numerical Methods}
+\fancyhead[R]{Qihao Zhuo: Problem Set 0}
+\fancyfoot[C]{\thepage}
+
+\thispagestyle{plain}
+\begin{center}
+  \large
+  \textbf{AME 60614: Numerical Methods} \\
+  \textbf{Fall 2021} \\
+  \vspace{0.5em}
+  \textbf{Problem Set 2} \\
+  \vspace{1em}
+  Qihao Zhuo
+\end{center}
+
+\vspace{1.5em}
+
+All codes are submitted to Sakai, and only their file names will be mentioned in this report when they occurs. 
+\section{Finite-Difference Schemes}
+\subsection{a}
+Taking the determinant of $T_{\alpha}-\lambda I$ with $n \times n$ as $D_n$. Computing $D_n$ by expanding the last row, 
+\begin{align}
+  D_n &= \left(\alpha-\lambda\right)D_{n-1} - \left(-1\right)^{2n-1}\left(-1\right)^{2n-2}D_{n-2}\notag\\
+  D_n &= \left(\alpha-\lambda\right)D_{n-1} - D_{n-2}\notag\\
+  D_0 &= 0\notag\\
+  D_1 &= \left(\alpha-\lambda\right)\notag
+\end{align}
+
+Taking $\left(\alpha-\lambda\right)$ as $2x$, then the recurrence relation of $D_n$ becomes, 
+\begin{align}
+  D_0 &= 0\notag\\
+  D_1 &= 2x\notag\\
+  D_n &= 2xD_{n-1} - D_{n-2}\notag
+\end{align}
+
+That is the famous Chebyshev polynomials of the second kind, and the roots are, 
+\begin{equation}
+  x_j = \cos \left(\frac{\pi j}{n+1}\right),~j=1,...,n\notag
+\end{equation}
+
+Therefore, the eigenvalues can be solved, 
+\begin{align}
+  \alpha - \lambda_j &= 2 x_j = 2\cos \left(\frac{\pi j}{n+1}\right)\notag\\
+  \lambda_j &= \alpha - 2 \cos \left(\frac{\pi j}{n+1}\right),~j=1,...,n\notag
+\end{align}
+
+For $k-th$ component of eigenvector associated with $\lambda_j$, 
+\begin{equation}
+  x_{k+2}-\left(\alpha - \lambda_j\right)x_{k+1}+x_k=0\notag
+\end{equation}
+
+Such equation has different eigenroots. Therefore, 
+\begin{align}
+  x_0 &=x_{n+1} = 0\notag\\
+  x_k &= ar_1^k + br_2^k\notag\\
+  a+b &=0\notag\\
+  x_k &= a\left(e^{\frac{ik\pi j}{n+1}}-e^{-\frac{ik\pi j}{n+1}}\right) = 2ia \sin \left(\frac{k\pi j}{n+1}\right)\notag
+\end{align}
+
+Since $a$ is arbitrary, setting $a = \frac{1}{2i}$. 
+\begin{align}
+  x_k &= \sin \left(\frac{k\pi j}{n+1}\right)\notag\\
+  \bm{q}_j &= \left[\sin \left(\frac{\pi j}{n+1}\right),\sin \left(\frac{2\pi j}{n+1}\right),...,\sin \left(\frac{n\pi j}{n+1}\right)\right]^T\notag
+\end{align}
+\subsection*{b}
+
+\end{document}
