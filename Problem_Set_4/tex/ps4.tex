@@ -54,9 +54,27 @@
 
 \section{Modified Wavenumber Analysis}\label{sec1}
 \begin{align*}
-  \frac{d\phi_j}{dt}&=\frac{\alpha}{\Delta x^2}\left(-\phi_{j+3}+4\phi_{j+2}-5\phi_{j+1}+2\phi_j\right)\\
-  \phi_j &= \psi(t)e^{ikj}
+  \frac{\partial \phi}{\partial t}&=\alpha \frac{\partial^2 \phi}{\partial x^2}\\
+  \phi_j &= \psi(t)e^{ikx_j}\\
+  \frac{d\psi}{dt}&=-\alpha k^2 \phi
 \end{align*}
+
+Considering the second-order one-sided scheme, 
+\begin{align*}
+  \frac{d\phi_j}{dt}&=\frac{\alpha}{\Delta x^2}\left(-\phi_{j+3}+4\phi_{j+2}-5\phi_{j+1}+2\phi_j\right)\\
+  &=\frac{\alpha}{\Delta x^2}\left(-\psi e^{ikx_j}e^{ik3\Delta x}+4\psi e^{ikx_j}e^{ik2\Delta x}-5\psi e^{ikx_j}e^{ik\Delta x}+2\psi e^{ikx_j}\right)\\
+  &=\frac{\alpha \phi}{\Delta x^2}\left(-e^{ik3\Delta x}+4e^{ik2\Delta x}-5e^{ik\Delta x}+2\right)\\
+  &=\frac{\alpha \phi}{\Delta x^2}\left(-\cos 3\Delta x-i\sin 3\Delta x+4\cos 2\Delta x +4i\sin 2\Delta x - 5\cos \Delta x -5i\sin \Delta x +2\right)\\
+  &=\frac{\alpha}{\Delta x^2}\left[\left(2-\cos3\Delta x+4\cos 2\Delta x-5\cos \Delta x\right)-i\left(\sin 3\Delta x -4\sin 2\Delta x - 5\sin \Delta x\right)\right]\phi\\
+  &=-\frac{\alpha}{\Delta x^2}\left[\left(-2+\cos3\Delta x-4\cos 2\Delta x+5\cos \Delta x\right)+i\left(\sin 3\Delta x -4\sin 2\Delta x - 5\sin \Delta x\right)\right]\phi\\
+  -\alpha k^{'2} \phi &=-\frac{\alpha}{\Delta x^2}\left[\left(-2+\cos3\Delta x-4\cos 2\Delta x+5\cos \Delta x\right)+i\left(\sin 3\Delta x -4\sin 2\Delta x - 5\sin \Delta x\right)\right]\phi\\
+  -\alpha k^{'2} &=-\frac{\alpha}{\Delta x^2}\left[\left(-2+\cos3\Delta x-4\cos 2\Delta x+5\cos \Delta x\right)+i\left(\sin 3\Delta x -4\sin 2\Delta x - 5\sin \Delta x\right)\right]\\
+  k^{'2}&=\frac{1}{\Delta x^2}\left[\left(-2+\cos3\Delta x-4\cos 2\Delta x+5\cos \Delta x\right)+i\left(\sin 3\Delta x -4\sin 2\Delta x - 5\sin \Delta x\right)\right]\\
+  k^{'2}\Delta x^2 &=\left(-2+\cos3\Delta x-4\cos 2\Delta x+5\cos \Delta x\right)+i\left(\sin 3\Delta x -4\sin 2\Delta x - 5\sin \Delta x\right)
+\end{align*}
+
+$k^{'}\Delta x$ is a complex number and $|k^{'}\Delta x|_{max}>2$. Thus it will lead to numerical instablity. 
+\section{One-Dimensional Diffusion Equation}
 
 %\begin{figure}[h]
 %  \centering
