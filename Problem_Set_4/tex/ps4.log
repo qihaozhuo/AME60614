@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2021.10.29)  14 NOV 2021 18:32
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2021.10.29)  19 NOV 2021 02:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -433,19 +433,39 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Trying to load font information for U+msb on input line 56.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+)
+Overfull \hbox (52.98218pt too wide) detected at line 93
+[]
+ []
 
-] (./ps4.aux)
+[1
+
+]
+Overfull \hbox (26.7278pt too wide) detected at line 101
+[]
+ []
+
+
+Overfull \hbox (22.61603pt too wide) detected at line 111
+[]
+ []
+
+
+Overfull \hbox (49.1786pt too wide) detected at line 132
+[]
+ []
+
+[2] [3] (./ps4.aux)
 Package rerunfilecheck Info: File `ps4.out' has not changed.
 (rerunfilecheck)             Checksum: 4D126D9B3D2B0480FF9EABCCC8183FCC;408.
  ) 
 Here is how much of TeX's memory you used:
  12935 strings out of 476919
  196024 string characters out of 5821839
- 523675 words of memory out of 5000000
+ 537675 words of memory out of 5000000
  32759 multiletter control sequences out of 15000+600000
  408286 words of font info for 50 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 71i,10n,79p,244b,324s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 71i,12n,79p,244b,335s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on ps4.pdf (1 page).
+Output written on ps4.pdf (3 pages).
