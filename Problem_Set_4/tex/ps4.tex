@@ -335,7 +335,8 @@ So explicit scheme also imports dissipation.
 
 Therefore the trapizoid method is the only choice to retain such initial energy for such a long cycle time. In that case, 
 the solution after ten cycles should be very close to the initial condition. The scheme is implemented with $p3\_2.m$. Since it is unconditionally stable, 
-the time step could be not so small. Considering the huge cost for solving huge matrices, the time step is firstly taken $0.05$. 
+the time step could be not so small. Considering the huge cost for solving huge matrices, the time step is firstly taken $0.05$. Then I changed it to 
+$0.01$. 
 
 To implement such method with 2-D dimension, I took a cubersome methed. The 2-D $u_{ij}$ is streched to a one dimensional vector, from a $512\times 512$ matriix 
 to a $512^2$ vector. Then the coefficient matrix becomes $512^2\times 512^2$ and is something like penta-diagonal matrix with some modification because of 
@@ -349,11 +350,18 @@ periodic conditions.
 \end{align*}
 
 $A$ and $B$ are both matrices mentioned above, something like penta-diagonal matrix with some modification because of periodic conditions. 
-After those are established, simulation could be processed by time steps. From $p3\_2.m$, the code took $4073$ seconds and it retained $99.99999999999999\%$ 
-of initial energy. The output of Matlab is shown in Fig.~\ref{fig3_1}
+After those are established, simulation could be processed by time steps. From $p3\_2.m$, the code took $4073$ seconds for $\Delta t=0.05$ and $14371$ second for $\Delta t = 0.01$. 
+Both of them  retained $99.99999999999999\%$ of initial energy. The output of Matlab is shown in Fig.~\ref{fig3_1}. 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.5\textwidth]{p3_1.png}
+    \begin{minipage}[t]{0.6\linewidth}
+    \centering
+    \includegraphics[width=3in]{p3_1.png}
+    \end{minipage}
+    \begin{minipage}[t]{0.6\linewidth}
+    \centering
+    \includegraphics[width=3in]{p3_2.png}
+    \end{minipage}
   \caption{Matlab output of trapizoid method with central difference scheme. }
   \label{fig3_1}
 \end{figure}
